@@ -19,7 +19,7 @@ app.use(require("express-session")({
     secret:"Rusty is the best og in the world",
     resave: false,
     saveUninitialized: false
-}));
+}));//add 2 session variables- logged_in(bool var) and username
 //view engine used is ejs(could be normal html or hbs)
 app.set('view engine','ejs');
 
