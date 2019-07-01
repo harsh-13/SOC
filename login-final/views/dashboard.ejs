@@ -1,3 +1,21 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= user.name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1 class="mt-4">Dashboard</h1>
+        <p class="lead mb-3">Welcome <%= user.name %></p><br>
+        <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        <div id='1'>
+            <form action="/docs/dashboard" method="POST" enctype="form-data">
+                <label for="Doc_name">
+                    <input type="text" id="Doc_name" name="Doc_name"></label>
+                <label for="source">
+                    <input type="file" id="source" name="source"></label>
+                <label for="Date">
+                    <input type="date" id="Date" name="Date"></label>
+                <br>
+                <button type="submit" id="save">Add</button>
+            </form>
+        </div>
+    </body>
+</html>

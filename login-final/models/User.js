@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+  image: {
+    type: Buffer,
+    required: false,
+    contentType: String,
+  },
   name: {
     type: String,
     required: true
