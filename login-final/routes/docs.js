@@ -7,12 +7,21 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 // Dashboard filepost
 router.post('/dashboard', urlencodedParser, (req, res) => {
-    var { Doc_name, source, Date } = req.body;  
+    var { Doc_name, source, Date } = req.body; 
+    var transition = [{
+      Doc_name,
+      source,
+      employee_name: 'CEO',
+      Date,
+      comment: 'start'
+    }];
+
     console.log(req.body)
+    
     var newDoc = new Docs({
       Doc_name,
       source,
-      //transition,
+      transition,
       Date,
     })
     newDoc.save();

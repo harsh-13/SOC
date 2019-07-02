@@ -9,14 +9,29 @@ const DocSchema = new mongoose.Schema({
         contentType: String,
         //required: true
     },
-    // transition: [{
-    //     employee_id: {type: String, default: ''},
-    //     DateOfIntake: {
-    //         type: Date,
-    //         default: Date.now},
-    //     completed: {type: Boolean ,default: false},
-    //     comment: {type: String, default: 'Started'}
-    // }],
+    transition: [{
+        Doc_name: {
+            type: String, 
+            required: true
+        },
+        source: {
+            type: Buffer, 
+            contentType: String
+        },
+        employee_name: {
+            type: String, 
+            required: true
+        },
+        Date: {
+            type: Date,
+            default: Date.now
+        },
+        //completed: {type: Boolean ,default: false},
+        comment: {
+            type: String, 
+            default: 'Started'
+        }
+    }],
     Date: {
         type: Date, 
         default: Date.now
