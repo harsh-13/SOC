@@ -22,8 +22,6 @@ router.post('/send', urlencodedParser, (req, res) => {
             }
         }
     );
-    
-
     res.redirect('/dashboard');
 })
 

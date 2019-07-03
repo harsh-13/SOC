@@ -16,6 +16,8 @@
                 <br>
                 <button type="submit" id="save">Add</button><br>
             </form>
+        </div>
+        <div id="2">
             <form action="/current/send" method="POST" enctype="form-data">
                 <label for="Doc_name">
                     <input type="text" id="Doc_name" name="Doc_name"></label>
@@ -30,12 +32,16 @@
                 <br>
                 <button type="submit" id="save">Send</button><br>
             </form>
+        </div><br>
+        <div id="3">
+            <form action="/view/view" method="GET">
+                <button type="submit" id="view">View</button>
+                <ul>
+                    <% for(var i=0; i < products.length ; i++) { %>
+                    <li><%= products[i].Doc_name %></li>
+                    <% } %>
+                </ul>
+            </form>
         </div>
-        <br>
-        <ul>
-            <% for(var i=0; i<docs.length; i++) {%>
-               <li><%= docs[i].Doc_name %></li>
-            <% } %>
-        </ul>
     </body>
 </html>
