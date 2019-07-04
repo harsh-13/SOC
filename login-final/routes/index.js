@@ -11,10 +11,12 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 // Dashboard
-router.get('/dashboard', ensureAuthenticated, urlencodedParser , (req, res, next) =>
-Docs.find({}, function(err, products) {
-  res.render('dashboard', { products: products, user: req.user });
+var docArray = []
+router.get('/dashboard', ensureAuthenticated, urlencodedParser , (req, res, next) => {
+  Docs.find({}, function(err, products) {
+    docArray = products;
+  })
+  res.render('dashboard', { products: docArray, user: req.user });
 })
-);
 
 module.exports = router;
