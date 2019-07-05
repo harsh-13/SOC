@@ -18,7 +18,7 @@ router.post('/send', urlencodedParser, (req, res) => {
             if (error) {
                 console.log(error);
             } else {
-                console.log(success);
+                //console.log(success);
             }
         }
     );

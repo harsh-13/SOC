@@ -9,7 +9,8 @@ const DocSchema = new mongoose.Schema({
         contentType: String,
         //required: true
     },
-    transition: [{
+    transition: 
+    [{
         Doc_name: {
             type: String, 
             required: true

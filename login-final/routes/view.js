@@ -8,9 +8,17 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
 // Dashboard filepost
 router.get('/view', urlencodedParser, (req, res, next) => {
+    // var allDocuments;
+    // var recievedDocuments;
     Docs.find({}, function(err, products) {
-        res.render('dashboard', { products: products, user: req.user });
-    });
+      console.log(products)
+      res.render('dashboard', { products: products, user: req.user });
+    })
+    // Docs.find({'transition': {$elemMatch: {employee_name: req.user.name}}}, function(err, recievedDocs) {
+    //     global.recievedDocuments = recievedDocs; 
+    // });
+
+    
 })
 
 module.exports = router;
