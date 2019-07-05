@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongo')(session);
+const User = require('./models/User');
 
 const app = express();
 
@@ -18,6 +20,13 @@ mongoose.connect(db, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
+// Connect MongoDBStore to Mongo
+const store = new MongoDBStore({
+    url: db,
+    collection: 'newofficeMarshallSessions',
+    clear_interval: 10
+});  
+
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -27,14 +36,35 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// process.env file for session
+// const TWO_HOUR = 1000*60*60*2;
+const TWO_HOUR = 1000*10;
+
+const {
+    NODE_ENV = 'development',
+    SESS_NAME = 'officemarshall',
+    SESS_SECRET = 'marshallisgreat',
+    SESS_LIFETIME = TWO_HOUR,
+} = process.env
+
+
+const IN_PROD = NODE_ENV === 'production';
+
+
 // Express session
-app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true
-  })
-);
+app.use(session({
+    name: SESS_NAME,
+    store: store,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESS_SECRET,
+    cookie: {
+        maxAge: SESS_LIFETIME,
+        sameSite: true, //strict
+        secure: IN_PROD,
+    }
+}));
+
 
 // Passport middleware
 app.use(passport.initialize());
@@ -43,12 +73,16 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
+
 // Global variables
 app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   res.locals.transition_displayer = req.flash('transition');
+  if(req.session.cookie.passport.user){
+    res.locals.user = User.findById(req.session.cookie.passport.user);
+  }
   next();
 });
 
