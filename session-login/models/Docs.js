@@ -15,7 +15,7 @@ const DocSchema = new mongoose.Schema({
     },
     transition: 
     [{
-        source: {
+        updated_source: {
             type: Buffer, 
             contentType: String,
             required: false
@@ -39,7 +39,7 @@ const DocSchema = new mongoose.Schema({
         //completed: {type: Boolean ,default: false},
         comment: {
             type: String, 
-            default: 'Started'
+            default: ''
         }
     }],
     Date: {

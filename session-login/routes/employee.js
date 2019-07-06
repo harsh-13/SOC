@@ -11,7 +11,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 // list down all employees stored in db
 router.get('/', ensureAuthenticated, (req, res, next) => {
     Users.find({}, function (err, products) {
-        res.render('employeelist', {products});
+        res.render('employee', {products});
     })
 });
 

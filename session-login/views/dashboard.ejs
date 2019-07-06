@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        <h1 class="mt-4">Dashboard</h1>
-        <p class="lead mb-3">Welcome <%= user.name %></p><br>
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
-        <br>
-        <% include ./partials/messages %>
-        <br>
-        <form action="dashboard/add" method="GET">
-            <button type="submit">Add Documents</button>
-        </form>
-        <br>
-        <form action="dashboard/refer" method="GET">
-            <button type="submit">Refer Documents</button>
-        </form>
-        <br>
-        <form action="dashboard/employee" method="GET">
-            <button type="submit">Get Employees</button>
-        </form>
-        <br>
-    </body>
-</html>
+<div>
+    <h1 class="mt-4">Dashboard</h1>
+    <p class="lead mb-3">Welcome <%= user.name %></p><br>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+    <hr>
+     <form action="dashboard/employee" method="GET">
+        <button type="submit">Show Employee list</button>
+    </form>
+    <hr>
+     <form action="dashboard/add" method="GET">
+        <button type="submit">Add Documents</button>
+    </form>
+    <hr>
+    <form action="dashboard/refer" method="GET">
+        <button type="submit">Refer Documents</button>
+    </form>
+    <hr>
+    <form action="dashboard/documents" method="GET">
+        <button type="submit">View all Documents</button>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+<div>
+        <h1 class="mt-4">Documents</h1>
+        <p class="lead mb-3">Welcome <%= user.name %></p><br>
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+</div>    
+<hr>
+<br>
+<div>
+    <h5>List of all the document</h5>
+    <% if(typeof docs_name != 'undefined') { %>
+    <ul>
+        <% docs_name.forEach(doc =>{ %>
+            <li> <p class = <%= doc.thread_closed %> > <%= doc.doc_name %></p> </li>
+        <% }); %>
+    </ul>
+    <% }; %>
+</div>
+<hr>
+<br>
+<div>
+    <form action="/dashboard/documents" method="POST" enctype="form-data">
+        <label for="doc_transition">
+            <input type="text" id="doc_name" name="doc_name" placeholder="Enter Document name"></label>
+        <button type="submit" id="save">Send</button><br>
+    </form>
+</div>
+
+<div>
+    
+    <% if(typeof doc_transition != 'undefined') { %>
+    <h5>List of all refers of selected document</h5>
+    <ul>
+        <% doc_transition.forEach(node => { %>
+            <li>Referred comment: <%= node.comment %><br>Referred employee: <%= node.employee_name %></li><br>
+        <% }); %>
+    </ul>
+    <% }; %>
+</div>
+<style>
+    .true {
+        background-color: rgba(235,104,100,0.5);
+    }
+    .false {
+        background-color: rgba(34,178,76,0.5);
+    }
+</style>
