@@ -37,8 +37,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // process.env file for session
-// const TWO_HOUR = 1000*60*60*2;
-const TWO_HOUR = 1000*10;
+const TWO_HOUR = 1000*60*60*2;
+// const TWO_HOUR = 1000*10;
 
 const {
     NODE_ENV = 'development',
@@ -80,9 +80,6 @@ app.use(function(req, res, next) {
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   res.locals.transition_displayer = req.flash('transition');
-  if(req.session.cookie.passport.user){
-    res.locals.user = User.findById(req.session.cookie.passport.user);
-  }
   next();
 });
 

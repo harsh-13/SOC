@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Docs = require('../models/Docs');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const User = require('../models/User');
 
 
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
@@ -13,21 +14,23 @@ router.post('/view', urlencodedParser, (req, res, next) => {
         // console.log(req.body.doc_transition);
         // console.log(product);
         
+        doc_transition = [];
         
-        if (doc !== null) {
+        if(doc){
             (doc.transition).forEach(function(element) {
-                console.log(element.employee_name);
+                doc_transition.push(element.employee_name);
             });
         }
+        else{
+            doc_transition.push('Invalid document name');
+        }
 
-        Docs.find({}, function(err, products) {
-
-            res.render('dashboard', { doc: doc, user: req.body.user, products});
+        User.findById(req.session.passport.user, (err, user) =>{
+            Docs.find({}, function(err, products) {
+                res.render('dashboard', { doc_transition: doc_transition, user: user, products: products});
+            });
         })
-
     });
-
-
 })
 
 module.exports = router;

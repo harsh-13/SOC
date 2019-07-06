@@ -37,45 +37,38 @@
             </form>
         </div><br>
         <hr>
-        <div id="3">
-            
-            <ul>
-                <% for(var i=0; i < products.length ; i++) { %>
-                <li><%= products[i].Doc_name %></li>
-                <% } %>
-            </ul>
 
-            <select name="" id="doc_transition"> 
-                <% for(var i=0; i < products.length ; i++) { %>
-                    <option id = <%= i %> ><%= products[i].Doc_name %></option>
-                <% } %>
-            </select>            
-            
-            <!-- <form action="/view/view" method="POST" enctype="form-data">
-                <label for="transtion_displayer">
-                    <input type="text" id="doc_transition" name="doc_transition" placeholder="Enter name from above">
+        <div class='container'>
+        <div class='row'>
         
-                </label> <button type="submit" id="save"> Send </button>
-            </form> -->
-
-            <% include ./partials/messages %>
+            <div id="3" class ='col-sm-12 col-md-6'>
+                
+                <ul>
+                    <% for(var i=0; i < products.length ; i++) { %>
+                    <li><%= products[i].Doc_name %></li>
+                    <% } %>
+                </ul>           
+                
+                
+            </div>
+            <hr>
+            <div class ='col-sm-12 col-md-6'>
+                
+                <form action="/view/view" method="POST" enctype="form-data">
+                    <label for="transtion_displayer">
+                        <input type="text" id="doc_transition" name="doc_transition" placeholder="Enter name from above">
+            
+                    </label> <button type="submit" id="save"> Send </button>
+                </form>
+                
+                <ul>
+                    <% for(var i=0; i < doc_transition.length ; i++) { %>
+                    <li><%= doc_transition[i] %></li>
+                    <% } %>
+                </ul>     
+            </div>
+        </div>
         </div>
 
-        <div id='transition_displayer'>
-
-        </div>
-        <script>
-
-            var select = document.getElementById('doc_transition');
-            var area = document.getElementById('transition_displayer');
-
-            const selected_doc =  select.value;
-            
-
-
-            
-
-            
-        </script>
     </body>
 </html>
