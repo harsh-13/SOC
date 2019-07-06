@@ -31,10 +31,13 @@ router.get('/', forwardAuthenticated, (req, res) => {
 var docArray = []
 router.get('/dashboard', ensureAuthenticated, urlencodedParser , (req, res, next) => {
   
-  Users.findOne({ name: req.user.name }, (err, user) => {
-    req.session.userID = user._id;
-    req.session.name = user.name;
+  req.session.user = req.user;
+  req.session.userID = req.user._id;
+  req.session.save(err => {
+    if(err) console.log(err);
   });
+
+  // console.log(req.session);
   
   Docs.find({}, function(err, products) {
     docArray = products;
