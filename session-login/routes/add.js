@@ -26,7 +26,6 @@ router.post('/', urlencodedParser, (req, res, next) => {
     }];
 
     //console.log(req.session);
-    
     var newDoc = new Docs({
       doc_name,
       source,
@@ -35,6 +34,10 @@ router.post('/', urlencodedParser, (req, res, next) => {
       last_employee_id: req.session.user._id
     })
     newDoc.save();
+    req.flash(
+      'success_msg',
+      'Document has been added successfully!'
+    )
     res.redirect('/dashboard');
 });
 

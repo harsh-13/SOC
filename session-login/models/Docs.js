@@ -15,7 +15,7 @@ const DocSchema = new mongoose.Schema({
     },
     transition: 
     [{
-        updated_source: {
+        source: {
             type: Buffer, 
             contentType: String,
             required: false
