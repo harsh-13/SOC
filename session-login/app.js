@@ -37,6 +37,7 @@ app.use(bodyParser.json());
 
 // process.env file for session
 const TWO_HOUR = 1000*60*60*2;
+// const TWO_HOUR = 1000*10;
 
 const {
     NODE_ENV = 'development',
@@ -80,7 +81,9 @@ app.use(function(req, res, next) {
 
 // Routes
 app.use('/', require('./routes/index.js'));
+app.use('/dashboard', require('./routes/dashboard.js'));
 app.use('/users', require('./routes/users.js'));
+// app.use('/add', require('./routes/add.js'));
 // app.use('/docs', require('./routes/docs.js'));
 // app.use('/current', require('./routes/current.js'));
 // app.use('/view', require('./routes/view.js'));

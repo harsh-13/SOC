@@ -25,7 +25,7 @@ const DocSchema = new mongoose.Schema({
             required: false
         },
         employee_id: {
-            type: Number, 
+            type: String, 
             required: true
         },
         employee_name: {
@@ -47,7 +47,7 @@ const DocSchema = new mongoose.Schema({
         default: Date.now
     },
     last_employee_id: {
-        type: Number,
+        type: String,
         required: true
     },
     last_employee_status: {

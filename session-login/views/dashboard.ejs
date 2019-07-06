@@ -5,41 +5,21 @@
         <h1 class="mt-4">Dashboard</h1>
         <p class="lead mb-3">Welcome <%= user.name %></p><br>
         <a href="/users/logout" class="btn btn-secondary">Logout</a>
-        <div id='1'>
-            <form action="/docs/dashboard" method="POST" enctype="form-data">
-                <label for="Doc_name">
-                    <input type="text" id="Doc_name" name="Doc_name" placeholder="Doc Name"></label>
-                <label for="source">
-                    <input type="file" id="source" name="source"></label>
-                <label for="Date">
-                    <input type="date" id="Date" name="Date"></label>
-                <br>
-                <button type="submit" id="save">Add</button><br>
-            </form>
-        </div>
-        <div id="2">
-            <form action="/current/send" method="POST" enctype="form-data">
-                <label for="Doc_name">
-                    <input type="text" id="Doc_name" name="Doc_name" placeholder="Doc Name"></label>
-                <label for="source">
-                    <input type="file" id="source" name="source"></label>
-                <label for="Date">
-                    <input type="date" id="Date" name="Date"></label>
-                <label for="employee_name">
-                    <input type="text" id="employee_name" name="employee_name" placeholder="Employee name"></label>
-                <label for="comment">
-                    <input type="text" id="comment" name="comment" placeholder="Comment"></label>
-                <br>
-                <button type="submit" id="save">Send</button><br>
-            </form>
-        </div><br>
+
+        <form action="dashboard/add" method="GET">
+            <button type="submit">Add Documents</button>
+        </form>
+        <br><br>
+        <form action="dashboard/refer" method="GET">
+            <button type="submit">Refer Documents</button>
+        </form>
         <div id="3">
             <form action="/view/view" method="GET">
                 <button type="submit" id="view">View Documents</button>
                 <h3>Documents:- </h3>
                 <ul>
                     <% for(var i=0; i < products.length ; i++) { %>
-                    <li><%= products[i].Doc_name %></li>
+                    <li><%= products[i].doc_name %></li>
                     <% } %>
                 </ul>
             </form>

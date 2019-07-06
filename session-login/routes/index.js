@@ -28,22 +28,15 @@ router.get('/', forwardAuthenticated, (req, res) => {
 
 
 // Dashboard
-var docArray = []
 router.get('/dashboard', ensureAuthenticated, urlencodedParser , (req, res, next) => {
   
   req.session.user = req.user;
-  req.session.userID = req.user._id;
-  req.session.save(err => {
-    if(err) console.log(err);
-  });
-
-  // console.log(req.session);
+  req.session.save();
   
   Docs.find({}, function(err, products) {
-    docArray = products;
+    res.render('dashboard', { products: products, user: req.user });  
   })
   // console.log(req.isAuthenticated());
-  res.render('dashboard', { products: docArray, user: req.user });
 });
 
 

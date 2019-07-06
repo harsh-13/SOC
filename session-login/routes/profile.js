@@ -7,7 +7,7 @@ const { ensureAuthenticated } = require('../config/auth');
 // url /dashboard/profile
 // view profile of current user 
 router.get('/', (req, res, next) => {
-    // console.log(req.isAuthenticated());
+    console.log(req.isAuthenticated());
     res.send('profile page')
 });
 
