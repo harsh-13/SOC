@@ -36,8 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // process.env file for session
-// const TWO_HOUR = 1000*60*60*2;
-const TWO_HOUR = 1000*10;
+const TWO_HOUR = 1000*60*60*2;
 
 const {
     NODE_ENV = 'development',

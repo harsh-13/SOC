@@ -30,7 +30,7 @@ router.get('/', urlencodedParser , (req, res, next) => {
   Docs.find({}, function(err, products) {
     docArray = products;
   })
-  console.log(req.isAuthenticated());
+  // console.log(req.isAuthenticated());
   res.render('dashboard', { products: docArray, user: req.user });
 });
 
