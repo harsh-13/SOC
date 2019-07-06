@@ -51,6 +51,36 @@ router.post('/', urlencodedParser, (req, res, next) => {
     res.redirect('/dashboard');
 });
 
+router.post('/terminate', urlencodedParser, (req, res, next) => {
+    var { doc_name } = req.body
+    Docs.findOneAndUpdate(
+        { doc_name: doc_name, last_employee_id: req.session.user._id, thread_closed: false },
+        { thread_closed: true },
+        function (error, success) {
+            if (error) {
+                console.log(error)
+            } else {
+                //console.log(success)
+            }
+        })
+    res.redirect('/dashboard')
+})
+
+router.post('/revive', urlencodedParser, (req, res, next) => {
+    var { doc_name } = req.body
+    Docs.findOneAndUpdate(
+        { doc_name: doc_name, last_employee_id: req.session.user._id, thread_closed: true },
+        { thread_closed: false },
+        function (error, success) {
+            if (error) {
+                console.log(error)
+            } else {
+                //console.log(success)
+            }
+        })
+    res.redirect('/dashboard')
+})
+
 module.exports = router;
 
 
