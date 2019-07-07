@@ -8,6 +8,10 @@ const MongoDBStore = require('connect-mongo')(session);
 
 const app = express();
 
+
+//image and css files
+app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 // Passport Config
 require('./config/passport')(passport);
 
@@ -16,15 +20,15 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose.connect(db, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
 
 // Connect MongoDBStore to Mongo
 const store = new MongoDBStore({
     url: db,
     collection: 'newofficeMarshallSessions',
     clear_interval: 10
-});  
+});
 
 // EJS
 app.use(expressLayouts);
@@ -36,14 +40,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // process.env file for session
-const TWO_HOUR = 1000*60*60*2;
+const TWO_HOUR = 1000 * 60 * 60 * 2;
 // const TWO_HOUR = 1000*10;
 
 const {
     NODE_ENV = 'development',
-    SESS_NAME = 'officemarshall',
-    SESS_SECRET = 'marshallisgreat',
-    SESS_LIFETIME = TWO_HOUR,
+        SESS_NAME = 'officemarshall',
+        SESS_SECRET = 'marshallisgreat',
+        SESS_LIFETIME = TWO_HOUR,
 } = process.env
 
 
@@ -73,10 +77,10 @@ app.use(flash());
 
 // Global variables
 app.use(function(req, res, next) {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  next();
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
 });
 
 // Routes
