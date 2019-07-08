@@ -1,29 +1,96 @@
-<div id="2">
-    <form action="/dashboard/refer" method="POST" enctype="form-data">
-        <label for="Doc_name">
-            <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"></label>
-        <label for="source">
-            <input type="file" id="source" name="source"></label>
-        <label for="Date">
-            <input type="date" id="Date" name="Date"></label>
-        <label for="employee_name">
-            <input type="text" id="employee_id" name="employee_id" placeholder="Employee id"></label>
-        <label for="comment">
-            <input type="text" id="comment" name="comment" placeholder="Comment"></label>
-        <br>
-        <button type="submit" id="save">Send</button><br>
-    </form>
-</div><br>
+<!DOCTYPE HTML>
+<!--
+	Introspect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
 
-<form action="/dashboard/refer/terminate" method="POST">
-    <label for="doc_name">
+<head>
+    <title>Introspect by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <style>
+        button {
+            border: none;
+            background-color: transparent;
+            font-family: "Lucida Console", "Comic Sans MS";
+            letter-spacing: .1em;
+        }
+        
+        .log {
+            background-color: transparent;
+            border: none;
+            font-family: "Lucida Console", "Comic Sans MS";
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <a href="/dashboard" class="logo">officemarshall</a>
+            <nav id="nav">
+                <a style="padding: 0%">
+                    <form action="/dashboard/add" method="GET">
+                        <button type="submit">Add Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/refer" method="GET">
+                        <button type="submit">Refer Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/documents" method="GET">
+                        <button type="submit">View all Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/employee" method="GET">
+                        <button type="submit">employee list</button>
+                    </form>
+                </a>
+                <a href="/users/logout" class="btn btn-secondary log">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+
+    <div id="2">
+        <form action="/dashboard/refer" method="POST" enctype="form-data">
+            <label for="Doc_name">
+            <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"></label>
+            <label for="source">
+            <input type="file" id="source" name="source"></label>
+            <label for="Date">
+            <input type="date" id="Date" name="Date"></label>
+            <label for="employee_name">
+            <input type="text" id="employee_id" name="employee_id" placeholder="Employee id"></label>
+            <label for="comment">
+            <input type="text" id="comment" name="comment" placeholder="Comment"></label>
+            <br>
+            <button type="submit" id="save">Send</button><br>
+        </form>
+    </div><br>
+
+    <form action="/dashboard/refer/terminate" method="POST">
+        <label for="doc_name">
         <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"> 
         <button type="submit">Terminate Document</button>
     </label>
-</form><br>
-<form action="/dashboard/refer/revive" method="POST">
-    <label for="doc_name">
+    </form><br>
+    <form action="/dashboard/refer/revive" method="POST">
+        <label for="doc_name">
         <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"> 
         <button type="submit">Revive Document</button>
     </label>
-</form>
+    </form>
+</body>
+
+</html>
