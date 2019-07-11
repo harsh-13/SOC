@@ -9,7 +9,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 // url /dashboard/documents
 // view form for adding document
 router.get('/', ensureAuthenticated, (req, res, next) => {
-    console.log(req.session);
+    //console.log(req.session);
     res.render('add', { user: req.session.user })
 });
 
@@ -17,6 +17,7 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
 // url /dashboard/add
 // add new document to db
 router.post('/', urlencodedParser, (req, res, next) => {
+    let success = []
     var { doc_name, source, Date } = req.body;
     var transition = [{
       employee_id: req.session.user._id,
@@ -34,11 +35,11 @@ router.post('/', urlencodedParser, (req, res, next) => {
       last_employee_id: req.session.user._id
     })
     newDoc.save();
-    req.flash(
-      'success_msg',
+    success.push({
+      'msg':
       'Document has been added successfully!'
-    )
-    res.render('add', { user: req.session.user});
+    });
+    res.render('add', {success, user: req.session.user});
 });
 
 module.exports = router;
