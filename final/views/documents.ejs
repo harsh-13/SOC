@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Introspect by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Introspect by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <style>
+        button {
+            border: none;
+            background-color: transparent;
+            font-family: "Lucida Console", "Comic Sans MS";
+            letter-spacing: .1em;
+        }
+        
+        .log {
+            background-color: transparent;
+            border: none;
+            font-family: "Lucida Console", "Comic Sans MS";
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="inner">
+            <a href="/dashboard" class="logo">officemarshall</a>
+            <nav id="nav">
+                <a style="padding: 0%">
+                    <form action="/dashboard/add" method="GET">
+                        <button type="submit">Add Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/refer" method="GET">
+                        <button type="submit">Refer Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/documents" method="GET">
+                        <button type="submit">View all Documents</button>
+                    </form>
+                </a>
+                <a style="padding: 0%">
+                    <form action="/dashboard/employee" method="GET">
+                        <button type="submit">employee list</button>
+                    </form>
+                </a>
+                <a href="/users/logout" class="btn btn-secondary log">Logout</a>
+            </nav>
+        </div>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    <!--header end-->
+
+    <div>
+
+        <h1 class="mt-4">Documents</h1>
+        <p class="lead mb-3">Welcome
+            <%= user.name %>
+        </p><br>
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+    </div>
+    <br>
+    <% include ./partials/messages %>
+    <hr>
+    <div>
+        <h5>List of your accessible documents</h5>
+        <% if(typeof docs_name != 'undefined') { %>
+            <ul>
+                <% docs_name.forEach(doc =>{ %>
+                    <li>
+                        <p class=< %=d oc.thread_closed %> >
+                            <%= doc.doc_name %>
+                        </p>
+                    </li>
+                    <% }); %>
+            </ul>
+            <% }; %>
+    </div>
+    <hr>
+    <div>
+        <form action="/dashboard/documents" method="POST" enctype="form-data">
+            <label for="doc_transition">
+            <input type="text" id="selected_doc" name="selected_doc" placeholder="Enter Document name"></label>
+            <button class='button' type="submit" id="save">Send</button><br>
+        </form>
+    </div>
+
+    <div>
+
+        <% if(typeof doc_transition != 'undefined') { %>
+            <h5>List of all refers of <%=selected_doc%></h5>
+            <ul>
+                <% doc_transition.forEach(node => { %>
+                    <li>Referred comment:
+                        <%= node.comment %><br>Referred employee:
+                            <%= node.employee_name %>
+                    </li><br>
+                    <% }); %>
+            </ul>
+            <% }; %>
+    </div>
+    <style>
+        .true {
+            background-color: rgba(235, 104, 100, 0.5);
+        }
+        
+        .false {
+            background-color: rgba(34, 178, 76, 0.5);
+        }
+    </style>
+    <script>
+        const user_js = 10; 
+        console.log(user_js);
+    </script>
+</body>
+
+
+</html>

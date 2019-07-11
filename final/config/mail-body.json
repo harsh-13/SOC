@@ -1,0 +1,5 @@
+{
+    "verifyMail": "<p>You are receiving this because you have requested the reset of the password for your account <br><a href='$'>Verify your email ID</a><br>This link is valid only for 30 minutes.<br>If you did not request this, please ignore this email and your password will remain unchanged.</p>",
+    "ConfirmationMail": "<p>'Hello'<br><br>This is a confirmation that the password for your account $ has just been changed.</p>"
+
+}
