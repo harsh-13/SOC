@@ -3673,6 +3673,80 @@
 
 		}
 
+	#twotwo {
+			padding: 6em 0 4em 0;
+			background: #f3f3f3;
+			background: -moz-linear-gradient(left, #f7f7f7 0%, #f7f7f7 50%, #f3f3f3 0%, #f3f3f3 100%);
+			background: -webkit-linear-gradient(left, #f7f7f7 0%, #f7f7f7 50%, #f3f3f3 0%, #f3f3f3 100%);
+			background: linear-gradient(to right, #f7f7f7 0%, #f7f7f7 50%, #f3f3f3 0%, #f3f3f3 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7f7f7', endColorstr='#f3f3f3',GradientType=1 );
+		}
+
+			#twotwo .inner {
+				display: -ms-flexbox;
+				display: -moz-flex;
+				display: -webkit-flex;
+				display: -ms-flex;
+				display: flex;
+				-moz-flex-direction: row;
+				-webkit-flex-direction: row;
+				-ms-flex-direction: row;
+				flex-direction: row;
+			}
+
+				#twotwo .inner article {
+					width: 50%;
+				}
+
+					#twotwo .inner article:first-child {
+						padding-right: 6em;
+					}
+
+					#twotwo .inner article:last-child {
+						padding-left: 6em;
+					}
+
+			@media screen and (max-width: 980px) {
+
+				#twotwo {
+					padding: 4em 0 2em 0;
+					background: -moz-linear-gradient(top, #f3f3f3 0%, #f3f3f3 50%, #f7f7f7 0%, #f7f7f7 100%);
+					background: -webkit-linear-gradient(top, #f3f3f3 0%, #f3f3f3 50%, #f7f7f7 0%, #f7f7f7 100%);
+					background: linear-gradient(to bottom, #f3f3f3 0%, #f3f3f3 50%, #f7f7f7 0%, #f7f7f7 100%);
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3f3f3', endColorstr='#f7f7f7',GradientType=0 );
+				}
+
+					#twotwo .inner {
+						-moz-flex-direction: column;
+						-webkit-flex-direction: column;
+						-ms-flex-direction: column;
+						flex-direction: column;
+					}
+
+						#twotwo .inner article {
+							width: 100%;
+						}
+
+							#twotwo .inner article:first-child {
+								padding-right: 0;
+								padding-bottom: 2em;
+							}
+
+							#twotwo .inner article:last-child {
+								padding-left: 0;
+								padding-top: 2em;
+							}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#twotwo {
+					padding: 2em 0 0.1em 0;
+				}
+
+			}
+
 	#three {
 		padding: 6em 0 4em 0;
 	}
