@@ -1,16 +1,4 @@
-<!DOCTYPE HTML>
-<!--
-	Introspect by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
 
-<head>
-    <title>Introspect by TEMPLATED</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
     <style>
         button {
             border: none;
@@ -26,7 +14,6 @@
             letter-spacing: 0.1em;
         }
     </style>
-</head>
 
 <body>
 
@@ -47,12 +34,12 @@
                 </a>
                 <a style="padding: 0%">
                     <form action="/dashboard/documents" method="GET">
-                        <button type="submit">View all Documents</button>
+                        <button type="submit">View Documents</button>
                     </form>
                 </a>
                 <a style="padding: 0%">
                     <form action="/dashboard/employee" method="GET">
-                        <button type="submit">employee list</button>
+                        <button type="submit">Employee List</button>
                     </form>
                 </a>
                 <a href="/users/logout" class="btn btn-secondary log">Logout</a>
@@ -63,12 +50,13 @@
 
     <div>
 
-        <h1 class="mt-4">Documents</h1>
+        <h1 class="mt-4">Assign Documents</h1>
         <p class="lead mb-3">Welcome <%= user.name %>
         </p><br>
         <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
     </div>
     <br>
+    <% include ./partials/messages %>
     <hr>
     <h5>Assign a Document</h5>
     <hr>
@@ -80,14 +68,12 @@
             <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"></label>
             <label for="source">
             <input type="file" id="source" name="source"></label>
-            <!-- <label for="Date">
-            <input type="date" id="Date" name="Date"></label> -->
             <label for="employee_name">
             <input type="text" id="employee_id" name="employee_id" placeholder="Employee id"></label>
             <label for="comment">
             <input type="text" id="comment" name="comment" placeholder="Comment"></label>
-            <br>
-            <button type="submit" class='button' id="save">Send</button><br>
+            
+            <button type="submit" class='button' id="save">Assign</button><br>
         </form>
     </div>
     <hr>
@@ -95,19 +81,15 @@
     <hr>
     <form action="/dashboard/refer/terminate" method="POST">
         <label for="doc_name">
-        <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name">
+        <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"></label>
         <button class='button' type="submit" id="save">Terminate Document</button>
-    </label>
     </form>
     <hr>
     <h5>Revive Document</h5>
     <hr>
     <form action="/dashboard/refer/revive" method="POST">
         <label for="doc_name">
-        <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name">
+        <input type="text" id="doc_name" name="doc_name" placeholder="Doc Name"></label>
         <button class='button' type="submit" id="save">Revive Document</button>
-    </label>
     </form>
-</body>
 
-</html>

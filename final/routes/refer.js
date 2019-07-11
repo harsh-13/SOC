@@ -20,10 +20,19 @@ router.get('/', ensureAuthenticated, (req, res, next) => {
 router.post('/', urlencodedParser, async (req, res, next) => {
 
     var { doc_name, source, employee_id, comment } = req.body;
-    let errors = []
-    let success = []
-    //console.log(req.body)
-    const user = await Users.findById(employee_id);
+  
+    
+    let errors = [];
+    let success = [];
+
+    var user = null
+    try{
+      user = await Users.findById(employee_id)
+    }
+    catch(err) {
+      console.log(err.message)
+    }
+  
     if(!user) {
       errors.push({
         'msg':
@@ -38,93 +47,114 @@ router.post('/', urlencodedParser, async (req, res, next) => {
 
     if(!doc){
       errors.push({
-          'msg':
-          'Invalid Document name'
-        })
+          "msg":
+          "Invalid Document name"
+        });
     }
     else {
       if(!(doc.last_employee_id === req.session.user._id)){
         errors.push({
-            'msg':
-            'You are not authorized!'
-          })
+            'msg': 'You are not authorized!'
+          });
       }
-      else if(thread_closed===true){
+      else if(doc.thread_closed===true){
         errors.push({
-            'msg':
+            msg:
             'Selected document had already been terminated! Please Revive this document before assigning it again'
           })
       }
       else {
         update = {$push : { transition: obj }};
         filter = { doc_name: doc_name }
-        const success = await Docs.findOneAndUpdate(filter, update);
+        const isUpdated = await Docs.findOneAndUpdate(filter, update);
         success.push({
-          'msg':
+          msg:
           'Document has been assigned successfully'
         })
       }
     }
 
-    res.render('refer', { success, errors, user: req.session.user})
-
-    //
-    // Docs.findOneAndUpdate(
-    //         { doc_name: doc_name, last_employee_id: req.session.user._id, thread_closed: false },
-    //         { $push: { transition: obj },
-    //           last_employee_id: employee_id },
-    //             function (error, success) {
-    //               if (error) {
-    //                   console.log(error);
-    //               } else {
-    //                   ///console.log(success);
-    //                   if (!success) {
-    //                     console.log(success)
-    //                     errors.push(
-    //                         'msg',
-    //                         'You are not authorized bitch!'
-    //                       )
-    //                   } else {
-    //                     success.push(
-    //                         'msg',
-    //                         'Document has been referred successfully!'
-    //                       )
-    //                   }
-    //               }
-    //         }
-    //     );
-    // })
-    // res.redirect('/dashboard');
+    res.render('refer', { success: success , errors: errors, user: req.session.user})
 });
 
-router.post('/terminate', urlencodedParser, (req, res, next) => {
+router.post('/terminate', urlencodedParser, async (req, res) => {
+    
     var { doc_name } = req.body
-    Docs.findOneAndUpdate(
-        { doc_name: doc_name, last_employee_id: req.session.user._id, thread_closed: false },
-        { thread_closed: true },
-        function (error, success) {
-            if (error) {
-                console.log(error)
-            } else {
-                //console.log(success)
-            }
+    let errors = [];
+    let success = [];
+
+    const doc = await Docs.findOne({ doc_name: doc_name })
+
+    if(!doc){
+      errors.push({
+          "msg":
+          "Invalid Document name"
+        });
+    }
+    else {
+      if(!(doc.last_employee_id === req.session.user._id)){
+        errors.push({
+            'msg': 'You are not authorized!'
+          });
+      }
+      else if(doc.thread_closed===true){
+        errors.push({
+            msg:
+            'Selected document had already been terminated!'
+          })
+      }
+      else {
+        update = {thread_closed : true }
+        filter = { _id: doc._id }
+        const isUpdated = await Docs.findOneAndUpdate(filter, update);
+        success.push({
+          msg:
+          'Document has been terminated successfully'
         })
-    res.redirect('/dashboard')
+      }
+    }
+
+    res.render('refer', { success: success , errors: errors, user: req.session.user})
+    
 })
 
-router.post('/revive', urlencodedParser, (req, res, next) => {
-    var { doc_name } = req.body
-    Docs.findOneAndUpdate(
-        { doc_name: doc_name, last_employee_id: req.session.user._id, thread_closed: true },
-        { thread_closed: false },
-        function (error, success) {
-            if (error) {
-                console.log(error)
-            } else {
-                //console.log(success)
-            }
+router.post('/revive', urlencodedParser, async (req, res) => {
+  var { doc_name } = req.body
+  let errors = [];
+  let success = [];
+    
+  const doc = await Docs.findOne({ doc_name: doc_name })
+
+  if(!doc){
+    errors.push({
+        "msg":
+        "Invalid Document name"
+      });
+  }
+  else {
+    if(!(doc.last_employee_id === req.session.user._id)){
+      errors.push({
+          'msg': 'You are not authorized!'
+        });
+    }
+    else if(doc.thread_closed===false){
+      errors.push({
+          msg:
+          'Selected document had already been in Revived State!'
         })
-    res.redirect('/dashboard')
+    }
+    else {
+      update = {thread_closed : false }
+      filter = { _id: doc._id }
+      const isUpdated = await Docs.findOneAndUpdate(filter, update);
+      success.push({
+        msg:
+        'Document has been revived successfully'
+      })
+    }
+  }
+
+  res.render('refer', { success: success , errors: errors, user: req.session.user})
 })
 
 module.exports = router;
