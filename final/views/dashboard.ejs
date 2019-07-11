@@ -39,7 +39,7 @@
     <!-- Header -->
     <header id="header">
         <div class="inner">
-            <a href="/dashboard" class="logo">officemarshall</a>
+            <a href="/dashboard" class="logo">OfficeMarshall</a>
             <nav id="nav">
                 <a style="padding:0">
                     <form action="dashboard/add" method="GET">
@@ -58,7 +58,7 @@
                 </a>
                 <a style="padding: 0%">
                     <form action="dashboard/employee" method="GET">
-                        <button type="submit">employee list</button>
+                        <button type="submit">Employee List</button>
                     </form>
                 </a>
                 <a href="/users/logout" class="btn btn-secondary log">Logout</a>
@@ -73,10 +73,10 @@
     <!-- Banner -->
     <section id="banner">
         <div class="inner">
-            <h1>Introspect: <span>A free + fully responsive<br />
-					site template by TEMPLATED</span></h1>
+            <h1>OfficeMarshall: <span>A dynamic + fully responsive<br />
+					site that meets todays corporative needs!</span></h1>
             <ul class="actions">
-                <li><a href="#" class="button alt">Get Started</a></li>
+                <li><a href="#info" class="button alt">Get Started</a></li>
             </ul>
         </div>
     </section>
@@ -85,13 +85,9 @@
     <section id="one">
         <div class="inner">
             <header>
-                <h2>Magna Etiam Lorem</h2>
+                <h2>Office Marshall</h2>
             </header>
-            <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu,
-                erisque hendrerit tellus. Integer sagittis. Vivamus a mauris eget arcu gravida tristique. Nunc iaculis mi in ante.</p>
-            <ul class="actions">
-                <li><a href="#" class="button alt">Learn More</a></li>
-            </ul>
+            <p>It is a web-based platform which keeps a record of all the documents floating in an office in a more sophisticated manner keeping track of all the applications and its proceedings made by the concerned employee, therefore reducing the latency in the process making office work more efficient. This project also helps in reducing paperwork and thus making the process eco-friendly.</p>
         </div>
     </section>
 
@@ -150,16 +146,16 @@
 
     <!-- Three -->
     <section id="three">
-        <div class="inner">
+        <div class="inner" id="info">
             <article>
                 <div class="content">
-                    <span class="icon fa-laptop"></span>
+                    <span class="icon fa-diamond"></span>
                     <header>
-                        <h3>Tempus Feugiat</h3>
+                        <h3>Add Documents</h3>
                     </header>
-                    <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet, lectus arcu.</p>
+                    <p>Use this feature to add documents to the linked MongoDB database directly so that they can be assigned to any registered employee!</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="/dashboard/add" class="button alt">Learn More</a></li>
                     </ul>
                 </div>
             </article>
@@ -167,23 +163,23 @@
                 <div class="content">
                     <span class="icon fa-diamond"></span>
                     <header>
-                        <h3>Aliquam Nulla</h3>
+                        <h3>Assign Documents</h3>
                     </header>
-                    <p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed.</p>
+                    <p>Assign Documents to your collegues of your organization along with a comment regarding what you have done and what you might want her/him to do with that document!</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="/dashboard/refer" class="button alt">Learn More</a></li>
                     </ul>
                 </div>
             </article>
             <article>
                 <div class="content">
-                    <span class="icon fa-laptop"></span>
+                    <span class="icon fa-diamond"></span>
                     <header>
-                        <h3>Sed Magna</h3>
+                        <h3>View Documents</h3>
                     </header>
-                    <p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula.</p>
+                    <p>Have a look at all the documents that have been sent to You. You may also examine the pathway followed by Any Document that has been added to the database connected with the WebApp!</p>
                     <ul class="actions">
-                        <li><a href="#" class="button alt">Learn More</a></li>
+                        <li><a href="/dashboard/documents" class="button alt">Learn More</a></li>
                     </ul>
                 </div>
             </article>
