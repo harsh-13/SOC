@@ -64,7 +64,7 @@ router.post('/', urlencodedParser, async (req, res, next) => {
           })
       }
       else {
-        update = {$push : { transition: obj }};
+        update = {$push : { transition: obj }, last_employee_id: employee_id};
         filter = { doc_name: doc_name }
         const isUpdated = await Docs.findOneAndUpdate(filter, update);
         success.push({
